@@ -1,0 +1,50 @@
+  squares = [
+{
+"penalty": -1,
+"reward": -1
+},
+{
+"penalty": -1,
+"reward": -1
+}
+]
+squares[0]["penalty"] = int(input("Player 1, please enter your penalty square number: "))
+squares[0]["reward"] = int(input("Player 1, please enter your reward square number: "))
+squares[1]["penalty"] = int(input("Player 2, please enter your penalty square number: "))
+squares[1]["reward"] = int(input("Player 2, please enter your reward square number: "))
+players_current_squares = [0, 0]
+import random
+def rolldice():
+    number = random.randint(1, 6)
+    while players_current_squares[0] < 100 and players_current_squares[1] < 100:
+
+        roll_1 =input("press r1 to roll the dice")
+        if roll_1.lower() == "r1":
+            players_current_squares[0] += {number}
+        if players_current_squares[0] == squares[0]["penalty"] or squares[1]["penalty"]:
+            players_current_squares[0] -= 10
+            print("player 1 landed in a penalty box -10")
+        elif players_current_squares[0] == squares[0]["reward"] or squares[1]["reward"]:
+            players_current_squares[0] += 10
+            print("player 1 landed in a reward box +10")
+        if players_current_squares[0] <= 100:
+            print(players_current_squares[0])
+
+        if players_current_squares[0] >= 100:
+            print("player 1 is the winner")
+            break
+        else:
+            roll_2 = input("press r2 to roll the dice")
+        if roll_2.lower() == "r2":
+         players_current_squares[1] += {number}
+        if players_current_squares[1] == squares[0]["penalty"] or squares[1]["penalty"]:
+            players_current_squares[1] -= 10
+            print("player 2 landed in a penalty box -10")
+
+        elif players_current_squares[1] == squares[0]["reward"] or squares[1]["reward"]:
+            players_current_squares[1] += 10
+            print("player 2 landed in a reward box +10")
+
+        elif players_current_squares[0] >= 100:
+            print("player 2 is the winner")
+            break
